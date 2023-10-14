@@ -1,0 +1,102 @@
+{
+    "images":{
+        "red": ["./images/fw0.png", "./images/fw0_bright.png"]
+    },
+    "fireworkData":
+    [
+        {
+            "type": "firework",
+            "productid": "somefirework0",
+            "name":"some firework",
+            "price": 100,
+            "description": "some firework that goes boom",
+            "rating": 4.5,
+            "image_type": "0",
+            "init_frag": "frag1"
+        },
+        {
+            "type": "frag",
+            "id": "frag1",
+
+            "lifetime": 100,
+            "lifetime_jitter": 0.1,
+            "speed": 10,
+            "speed_jitter": 0.1,
+            "speed_decay": 0.99,
+
+            "frag_color": "#91fffa",
+            "frag_flash": 0.6,
+            "frag_size": 5,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#4287f5",
+            "trail_size": 4,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 50,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [10, 30],
+            "frag_count_jitter": [0.1, 0.1],
+            "frag_types": ["frag3", "frag2"],
+            "frag_arcs": [[0,1], [0.4,0.6]]
+        },
+        {
+            "type": "frag",
+            "id": "frag2",
+
+            "lifetime": 100,
+            "lifetime_jitter": 0.1,
+            "speed": 8,
+            "speed_jitter": 0.1,
+            "speed_decay": 0.99,
+
+            "frag_color": "#91fffa",
+            "frag_flash": 0.0,
+            "frag_size": 2,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#6a8a9c",
+            "trail_size": 5,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 30,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [],
+            "frag_count_jitter": [],
+            "frag_types": [],
+            "frag_arcs": []
+        },
+        {
+            "type": "frag",
+            "id": "frag3",
+
+            "lifetime": 100,
+            "lifetime_jitter": 0.3,
+            "speed": 5,
+            "speed_jitter": 0.1,
+            "speed_decay": 0.99,
+
+            "frag_color": "#ff8682",
+            "frag_flash": 0.1,
+            "frag_size": 2,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#a83632",
+            "trail_size": 5,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 30,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [],
+            "frag_count_jitter": [],
+            "frag_types": [],
+            "frag_arcs": []
+        }
+    ]
+}
