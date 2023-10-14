@@ -1,6 +1,10 @@
 {
     "images":{
-        "red": ["./images/fw0.png", "./images/fw0_bright.png"]
+        "red": ["./images/fw1.png", "./images/fw1_bright.png"],
+        "green": ["./images/fw2.png", "./images/fw2_bright.png"],
+        "cyan": ["./images/fw3.png", "./images/fw3_bright.png"],
+        "blue": ["./images/fw4.png", "./images/fw4_bright.png"],
+        "pink": ["./images/fw5.png", "./images/fw5_bright.png"]
     },
     "fireworkData":
     [
@@ -11,7 +15,37 @@
             "price": 100,
             "description": "some firework that goes boom",
             "rating": 4.5,
-            "image_type": "0",
+            "image_type": "red",
+            "init_frag": "frag1"
+        },
+        {
+            "type": "firework",
+            "productid": "somefirework1",
+            "name":"some firework other",
+            "price": 100,
+            "description": "some firework that goes boom",
+            "rating": 4.5,
+            "image_type": "green",
+            "init_frag": "frag1"
+        },
+        {
+            "type": "firework",
+            "productid": "somefirework2",
+            "name":"some firework 2",
+            "price": 100,
+            "description": "some firework that goes boom",
+            "rating": 4.5,
+            "image_type": "blue",
+            "init_frag": "frag1"
+        },
+        {
+            "type": "firework",
+            "productid": "somefirework3",
+            "name":"some firework 3",
+            "price": 100,
+            "description": "some firework that goes boom",
+            "rating": 4.5,
+            "image_type": "cyan",
             "init_frag": "frag1"
         },
         {

@@ -8,7 +8,7 @@ let flashLevel = 0;
 
 window.addEventListener('load', function() {
     tryLoadData();
-    canvas = document.getElementById("canvas");
+    canvas = document.getElementById("unused-canvas");
     ctx = canvas.getContext("2d");
     mainLoop();
 });
@@ -25,10 +25,11 @@ function tryLoadData() {
     });
 }
 
-function initData(data) {
+function initData(jsondata) {
+    var data = jsondata.fireworkData;
     console.log(data);
 
-    for(let i in data) {
+    for(let i in data) {        
         if(data[i].type == "frag") {
             // check for duplicate ids
             if(fragData[data[i].id]) {
@@ -41,6 +42,29 @@ function initData(data) {
                 throw new Error("duplicate firework name: " + data[i].name);
             }
             fireworkData[data[i].name] = data[i];
+
+                // select the hidden element
+
+                // for every item in the json, copy the hidden element
+                // and add it to the page. unhide it.
+
+                // give it the proper title, price, rating, etc.
+
+                let templateElement = document.getElementById("shop-element-template");
+
+                let clone = templateElement.cloneNode(true);
+                clone.id = "shop-element-clone";
+                clone.querySelector(".dimImage").src = jsondata.images[data[i].image_type][0];
+                clone.querySelector(".brightImage").src = jsondata.images[data[i].image_type][1];
+                clone.hidden = false;
+
+
+                //let can = clone.querySelector(".canvas");
+                //can.id = "canvas-clone";
+
+                let container = document.getElementsByClassName('row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3')[0];
+                container.appendChild(clone);
+
         }else {
             throw new Error("unknown type: " + data[i].type);
         }
