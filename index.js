@@ -8,7 +8,7 @@ let flashLevel = 0;
 
 window.addEventListener('load', function() {
     tryLoadData();
-    canvas = document.getElementById("unused-canvas");
+    canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     mainLoop();
 });
@@ -54,8 +54,11 @@ function initData(jsondata) {
 
                 let clone = templateElement.cloneNode(true);
                 clone.id = "shop-element-clone";
-                clone.querySelector(".dimImage").src = jsondata.images[data[i].image_type][0];
-                clone.querySelector(".brightImage").src = jsondata.images[data[i].image_type][1];
+
+                let img1 = clone.querySelector(".dimImage");
+                img1.src = jsondata.images[data[i].image_type][0];
+                let img2 = clone.querySelector(".brightImage")
+                img2.src = jsondata.images[data[i].image_type][1];
                 clone.hidden = false;
 
 
@@ -69,6 +72,14 @@ function initData(jsondata) {
             throw new Error("unknown type: " + data[i].type);
         }
     }
+    
+    launchFirework();
+}
+
+function launchFirework() {
+    let f = new Firework(fireworkData["some firework"])
+    f.launch();
+    setTimeout(launchFirework, Math.random()*3000+200)
 }
 
 // Firework class
@@ -221,6 +232,7 @@ function drawFlash() {
 }
 
 function mainLoop() {
+    canvas.width = window.innerWidth;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     drawFlash();
