@@ -6,6 +6,8 @@ let canvas, ctx;
 let gravity = 0.05;
 let flashLevel = 0;
 let activeFireworkName = "";
+let cartNum = 0;
+let cart = [];
 
 window.addEventListener('load', function() {
     tryLoadData();
@@ -65,8 +67,14 @@ function initData(jsondata) {
                     console.log("set activeFireworkName to " + name);
                 });
 
+                document.getElementById("cartNum").innerHTML = cartNum;
                 clone.querySelector(".cart-btn").addEventListener("click", function(){
-                    //TODO
+                    const pid = clone.id;
+                    cart.push(pid);
+                    console.log("added " + pid + " to cart");
+                    cartNum++;
+                    document.getElementById("cartNum").innerHTML = cartNum;
+                    console.log(cart);
                 });
 
                 let img1 = clone.querySelector(".dimImage");
@@ -81,6 +89,8 @@ function initData(jsondata) {
 
                 let container = document.getElementsByClassName('row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3')[0];
                 container.appendChild(clone);
+
+                
 
         }else {
             throw new Error("unknown type: " + data[i].type);
