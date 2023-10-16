@@ -12,9 +12,8 @@
             "type": "firework",
             "productid": "somefirework0",
             "name":"some firework",
-            "price": 100,
+            "price": 999,
             "description": "some firework that goes boom",
-            "rating": 4.5,
             "image_type": "red",
             "init_frag": "frag1"
         },
@@ -24,7 +23,6 @@
             "name":"some firework other",
             "price": 100,
             "description": "some firework that goes boom",
-            "rating": 4.5,
             "image_type": "green",
             "init_frag": "frag1"
         },
@@ -34,7 +32,6 @@
             "name":"some firework 2",
             "price": 100,
             "description": "some firework that goes boom",
-            "rating": 4.5,
             "image_type": "blue",
             "init_frag": "frag1"
         },
@@ -44,7 +41,6 @@
             "name":"some firework 3",
             "price": 100,
             "description": "some firework that goes boom",
-            "rating": 4.5,
             "image_type": "cyan",
             "init_frag": "frag1"
         },

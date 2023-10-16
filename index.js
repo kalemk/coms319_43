@@ -5,6 +5,7 @@ let trails = [];
 let canvas, ctx;
 let gravity = 0.05;
 let flashLevel = 0;
+let activeFireworkName = "";
 
 window.addEventListener('load', function() {
     tryLoadData();
@@ -48,12 +49,25 @@ function initData(jsondata) {
                 // for every item in the json, copy the hidden element
                 // and add it to the page. unhide it.
 
-                // give it the proper title, price, rating, etc.
+                // give it the proper title, price, etc.
 
                 let templateElement = document.getElementById("shop-element-template");
 
                 let clone = templateElement.cloneNode(true);
-                clone.id = "shop-element-clone";
+                clone.id = "shop-element-"+data[i].productid;
+                clone.querySelector(".card-title").innerText = data[i].name;
+                clone.querySelector(".card-text").innerText = data[i].description;
+                clone.querySelector(".text-body-secondary").innerText = "$"+data[i].price;
+
+                clone.querySelector(".animate-btn").addEventListener("click", function(){
+                    const name = clone.querySelector(".card-title").innerText;
+                    activeFireworkName = name;
+                    console.log("set activeFireworkName to " + name);
+                });
+
+                clone.querySelector(".cart-btn").addEventListener("click", function(){
+                    //TODO
+                });
 
                 let img1 = clone.querySelector(".dimImage");
                 img1.src = jsondata.images[data[i].image_type][0];
@@ -72,6 +86,15 @@ function initData(jsondata) {
             throw new Error("unknown type: " + data[i].type);
         }
     }
+
+    // set active firework to the one with the highest price
+    let maxPrice = 0;
+    for(let i in fireworkData) {
+        if(fireworkData[i].price > maxPrice) {
+            maxPrice = fireworkData[i].price;
+            activeFireworkName = fireworkData[i].name;
+        }
+    }
     
     launchFirework();
 }
@@ -86,7 +109,6 @@ function launchFirework() {
 function Firework(data) {
     this.name = data.name;
     this.price = data.price;
-    this.rating = data.rating;
     this.image_type = data.image_type;
     this.init_frag = data.init_frag;
 }
