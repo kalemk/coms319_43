@@ -13,7 +13,7 @@ window.addEventListener('load', function() {
     tryLoadData();
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
-    mainLoop();
+    setInterval(mainLoop, 1000/60);
 });
 
 function tryLoadData() {
@@ -106,14 +106,24 @@ function initData(jsondata) {
         }
     }
     
-    launchFirework();
+    beginLaunchingFireworks();
 }
 
-function launchFirework() {
-    let f = new Firework(fireworkData["some firework"])
-    f.launch();
-    setTimeout(launchFirework, Math.random()*3000+200)
+function beginLaunchingFireworks() {
+    let waitSteps = 0;
+
+    setInterval(function() {
+        if(waitSteps <= 0) {
+            waitSteps = Math.floor(Math.random()*30+2)
+            let f = new Firework(fireworkData[activeFireworkName]);
+            f.launch();
+        }else{
+            waitSteps--;
+        }
+    }, 100);
 }
+
+
 
 // Firework class
 function Firework(data) {
@@ -182,7 +192,7 @@ Frag.prototype.update = function() {
     this.lifetime--;
 
     if(this.lifetime < 0) {
-        flashLevel = this.frag_flash;
+        flashLevel = Math.max(this.frag_flash, flashLevel);
         for(let i = 0; i<this.frag_count.length; i++) {
             const frag_count = this.frag_count[i];
             const frag_type = this.frag_types[i];
@@ -285,7 +295,5 @@ function mainLoop() {
             activeFrags.splice(i, 1);
         }
     }
-
-    requestAnimationFrame(mainLoop);
 }
 
