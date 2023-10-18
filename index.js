@@ -78,17 +78,20 @@ function initData(jsondata) {
                     console.log("set activeFireworkName to " + name);
                 });
 
+                let removeButtonElement = clone.querySelector(".remove-cart-btn");
+                removeButtonElement.style.display = "none";
                 
                 let cartSize = 0;
                 for(let c = 1; c < cart.length; c = c+2){
                     cartSize += cart[c];
                 }
+                
                 document.getElementById("cartNum").innerHTML = cartSize;
                 clone.querySelector(".cart-btn").addEventListener("click", function(){
                     let pid = clone.id;
                     pid = pid.slice(13, pid.length);
+                    const isElement = (element) => element == pid;
                     if(cart.findIndex != -1){
-                        const isElement = (element) => element == pid;
                         cart[cart.findIndex(isElement) + 1] += 1 //adds 1 to cart value
                         cartSize = 0;
                         for(let c = 1; c < cart.length; c = c+2){
@@ -98,14 +101,48 @@ function initData(jsondata) {
                         document.getElementById("cartNum").innerHTML = cartSize;
                     }
                     //localStorage.setItem("cart",cart);
-                    
+                    //TODO: add local storage
+                    //TODO: add button visibility
+                    //TODO: remove unfunctional buttons & add credits to nav bar
+                    //TODO: add cart page
+                    if(cart[cart.findIndex(isElement) + 1] > 0){           //if pid is in the cart
+                        removeButtonElement.style.display = "block";
+                    }
+                    else{
+                        removeButtonElement.style.display = "none";
+                    }
                     console.log("added " + pid + " to cart");
                     document.getElementById("cartNum").innerHTML = cartSize;
                     console.log(cart);
                 });
 
                 clone.querySelector(".remove-cart-btn").addEventListener("click", function(){
-                    
+                    let pid = clone.id;
+                    pid = pid.slice(13, pid.length);
+                    const isElement = (element) => element == pid;
+                    if(cart.findIndex != -1){
+                        cart[cart.findIndex(isElement) + 1] -= 1 //remove 1 from cart value
+                        cartSize = 0;
+                        for(let c = 1; c < cart.length; c = c+2){
+                            cartSize += cart[c];
+                        }
+                        console.log(cartSize)
+                        document.getElementById("cartNum").innerHTML = cartSize;
+                    }
+                    //localStorage.setItem("cart",cart);
+                    //TODO: add local storage
+                    //TODO: add button visibility
+                    //TODO: remove unfunctional buttons & add credits to nav bar
+                    //TODO: add cart page
+                    if(cart[cart.findIndex(isElement) + 1] > 0){           //if pid is in the cart
+                        removeButtonElement.style.display = "block";
+                    }
+                    else{
+                        removeButtonElement.style.display = "none";
+                    }
+                    console.log("removed " + pid + " to cart");
+                    document.getElementById("cartNum").innerHTML = cartSize;
+                    console.log(cart);
                 });
 
                 let img1 = clone.querySelector(".dimImage");
