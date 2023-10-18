@@ -10,45 +10,57 @@
     [
         {
             "type": "firework",
-            "productid": "somefirework0",
-            "name":"some firework",
-            "price": 999,
-            "description": "some firework that goes boom",
+            "productid": "firework_e0",
+            "name":"Double Lotus",
+            "price": 17,
+            "description": "A dazzling two-tone display.",
+            "image_type": "pink",
+            "init_frag": "frag1"
+        },
+        {
+            "type": "firework",
+            "productid": "firework_e1",
+            "name":"Boomer",
+            "price": 9,
+            "description": "It goes boom.",
             "image_type": "red",
-            "init_frag": "frag1"
+            "init_frag": "BoomerFrag1"
         },
         {
             "type": "firework",
-            "productid": "somefirework1",
-            "name":"some firework other",
-            "price": 100,
-            "description": "some firework that goes boom",
-            "image_type": "green",
-            "init_frag": "frag1"
-        },
-        {
-            "type": "firework",
-            "productid": "somefirework2",
-            "name":"some firework 2",
-            "price": 100,
-            "description": "some firework that goes boom",
+            "productid": "firework_e2",
+            "name":"The Splitter",
+            "price": 12,
+            "description": "A spectacular splitting spectacle.",
             "image_type": "blue",
-            "init_frag": "frag1"
+            "init_frag": "SplitterFrag1"
         },
         {
             "type": "firework",
-            "productid": "somefirework3",
-            "name":"some firework 3",
-            "price": 100,
-            "description": "some firework that goes boom",
-            "image_type": "cyan",
-            "init_frag": "frag1"
+            "productid": "firework_e3",
+            "name":"Golden Shower",
+            "price": 999,
+            "description": "A golden shower of sparks and a crowd favorite.",
+            "image_type": "green",
+            "init_frag": "GoldenFrag1"
         },
+        {
+            "type": "firework",
+            "productid": "firework_e4",
+            "name":"Chaos",
+            "price": 20,
+            "description": "what?!",
+            "image_type": "cyan",
+            "init_frag": "ChaosFrag1"
+        },
+
+
+
         {
             "type": "frag",
             "id": "frag1",
 
-            "lifetime": 100,
+            "lifetime": 50,
             "lifetime_jitter": 0.1,
             "speed": 10,
             "speed_jitter": 0.1,
@@ -127,6 +139,325 @@
             "frag_count_jitter": [],
             "frag_types": [],
             "frag_arcs": []
+        },
+
+
+
+        {
+            "type": "frag",
+            "id": "BoomerFrag1",
+
+            "lifetime": 45,
+            "lifetime_jitter": 0,
+            "speed": 30,
+            "speed_jitter": 0,
+            "speed_decay": 0.90,
+
+            "frag_color": "#ffffff",
+            "frag_flash": 0.8,
+            "frag_size": 5,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#ffe8e6",
+            "trail_size": 4,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 80,
+            "trail_lifetime_jitter": 0.3,
+
+            "frag_count": [30],
+            "frag_count_jitter": [0.1],
+            "frag_types": ["BoomerFrag2"],
+            "frag_arcs": [[0,1]]
+        },
+        {
+            "type": "frag",
+            "id": "BoomerFrag2",
+
+            "lifetime": 30,
+            "lifetime_jitter": 0.5,
+            "speed": 5,
+            "speed_jitter": 0.5,
+            "speed_decay": 0.99,
+
+            "frag_color": "#ff8682",
+            "frag_flash": 0,
+            "frag_size": 2,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#ffdad6",
+            "trail_size": 3,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 30,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [],
+            "frag_count_jitter": [],
+            "frag_types": [],
+            "frag_arcs": []
+        },
+
+
+
+        {
+            "type": "frag",
+            "id": "SplitterFrag1",
+
+            "lifetime": 85,
+            "lifetime_jitter": 0,
+            "speed": 10,
+            "speed_jitter": 0,
+            "speed_decay": 0.98,
+
+            "frag_color": "#ffffff",
+            "frag_flash": 0.5,
+            "frag_size": 4,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#bde9ff",
+            "trail_size": 4,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 50,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [10],
+            "frag_count_jitter": [0.0],
+            "frag_types": ["SplitterFrag2"],
+            "frag_arcs": [[0,1]]
+        },
+        {
+            "type": "frag",
+            "id": "SplitterFrag2",
+
+            "lifetime": 30,
+            "lifetime_jitter": 0.0,
+            "speed": 5,
+            "speed_jitter": 0.0,
+            "speed_decay": 0.99,
+
+            "frag_color": "#86bedb",
+            "frag_flash": 0,
+            "frag_size": 2,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#86bedb",
+            "trail_size": 4,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 10,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [10],
+            "frag_count_jitter": [0.0],
+            "frag_types": ["SplitterFrag3"],
+            "frag_arcs": [[0,1]]
+        },
+        {
+            "type": "frag",
+            "id": "SplitterFrag3",
+
+            "lifetime": 30,
+            "lifetime_jitter": 0.0,
+            "speed": 5,
+            "speed_jitter": 0.0,
+            "speed_decay": 0.99,
+
+            "frag_color": "#86bedb",
+            "frag_flash": 0,
+            "frag_size": 2,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#86bedb",
+            "trail_size": 4,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 10,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [],
+            "frag_count_jitter": [],
+            "frag_types": [],
+            "frag_arcs": []
+        },
+
+
+        {
+            "type": "frag",
+            "id": "GoldenFrag1",
+
+            "lifetime": 120,
+            "lifetime_jitter": 0,
+            "speed": 6,
+            "speed_jitter": 0,
+            "speed_decay": 0.9998,
+
+            "frag_color": "#ffffff",
+            "frag_flash": 0.8,
+            "frag_size": 4,
+            "frag_size_jitter": 0.1,
+
+            "trail_color": "#ffedbf",
+            "trail_size": 4,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 80,
+            "trail_lifetime_jitter": 0.9,
+
+            "frag_count": [30],
+            "frag_count_jitter": [0.0],
+            "frag_types": ["GoldenFrag2"],
+            "frag_arcs": [[0.25,0.75]]
+        },
+        {
+            "type": "frag",
+            "id": "GoldenFrag2",
+
+            "lifetime": 100,
+            "lifetime_jitter": 0.2,
+            "speed": 5,
+            "speed_jitter": 0.2,
+            "speed_decay": 0.99,
+
+            "frag_color": "#ffedbf",
+            "frag_flash": 0,
+            "frag_size": 2,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#ffdcbf",
+            "trail_size": 3,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 30,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [1,1,1],
+            "frag_count_jitter": [0,0,0],
+            "frag_types": ["GoldenFrag3","GoldenFrag3", "GoldenFrag3"],
+            "frag_arcs": [[0.1, 0.15], [0.85, 0.9], [0,0]]
+        },
+        {
+            "type": "frag",
+            "id": "GoldenFrag3",
+
+            "lifetime": 20,
+            "lifetime_jitter": 0.9,
+            "speed": 2,
+            "speed_jitter": 0.1,
+            "speed_decay": 0.99,
+
+            "frag_color": "#ffc5bf",
+            "frag_flash": 0,
+            "frag_size": 2,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#ffd2bf",
+            "trail_size": 3,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 30,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [],
+            "frag_count_jitter": [],
+            "frag_types": [],
+            "frag_arcs": []
+        },
+        
+
+        {
+            "type": "frag",
+            "id": "ChaosFrag1",
+
+            "lifetime": 50,
+            "lifetime_jitter": 0.1,
+            "speed": 10,
+            "speed_jitter": 0.1,
+            "speed_decay": 0.99,
+
+            "frag_color": "#91fffa",
+            "frag_flash": 0.6,
+            "frag_size": 5,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#4287f5",
+            "trail_size": 4,
+            "trail_size_jitter": 0.2,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 50,
+            "trail_lifetime_jitter": 0.5,
+
+            "frag_count": [20, 30],
+            "frag_count_jitter": [0.1, 0.2],
+            "frag_types": ["ChaosFrag3", "ChaosFrag2"],
+            "frag_arcs": [[0,0.5], [0.5,1]]
+        },
+        {
+            "type": "frag",
+            "id": "ChaosFrag2",
+
+            "lifetime": 100,
+            "lifetime_jitter": 0.1,
+            "speed": 8,
+            "speed_jitter": 0.1,
+            "speed_decay": 0.99,
+
+            "frag_color": "#91fffa",
+            "frag_flash": 0.0,
+            "frag_size": 2,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#1cfc03",
+            "trail_size": 4,
+            "trail_size_jitter": 0.8,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 30,
+            "trail_lifetime_jitter": 0.9,
+
+            "frag_count": [],
+            "frag_count_jitter": [],
+            "frag_types": [],
+            "frag_arcs": []
+        },
+        {
+            "type": "frag",
+            "id": "ChaosFrag3",
+
+            "lifetime": 100,
+            "lifetime_jitter": 0.3,
+            "speed": 5,
+            "speed_jitter": 0.1,
+            "speed_decay": 0.99,
+
+            "frag_color": "#ff8682",
+            "frag_flash": 0.1,
+            "frag_size": 2,
+            "frag_size_jitter": 0.2,
+
+            "trail_color": "#ff00fb",
+            "trail_size": 6,
+            "trail_size_jitter": 0.1,
+            "trail_spacing": 2,
+            "trail_spacing_jitter": 0.2,
+            "trail_lifetime": 30,
+            "trail_lifetime_jitter": 1.5,
+
+            "frag_count": [],
+            "frag_count_jitter": [],
+            "frag_types": [],
+            "frag_arcs": []
         }
+
     ]
 }
