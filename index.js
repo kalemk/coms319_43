@@ -6,7 +6,7 @@ let canvas, ctx;
 let gravity = 0.05;
 let flashLevel = 0;
 let activeFireworkName = "";
-let cartNum = 0;
+let cartFlag = 1;
 let cart = [];
 
 window.addEventListener('load', function() {
@@ -31,8 +31,18 @@ function tryLoadData() {
 function initData(jsondata) {
     var data = jsondata.fireworkData;
     console.log(data);
+    if(cartFlag == 1){
+        for(let i in data){
+            if(data[i].type == "firework"){
+                cart.push(data[i].productid)
+                cart.push(0);
+            }
+        }
+        cartFlag = 0;
+    }
+    
 
-    for(let i in data) {        
+    for(let i in data) {   
         if(data[i].type == "frag") {
             // check for duplicate ids
             if(fragData[data[i].id]) {
@@ -45,6 +55,7 @@ function initData(jsondata) {
                 throw new Error("duplicate firework name: " + data[i].name);
             }
             fireworkData[data[i].name] = data[i];
+            
 
                 // select the hidden element
 
@@ -67,14 +78,34 @@ function initData(jsondata) {
                     console.log("set activeFireworkName to " + name);
                 });
 
-                document.getElementById("cartNum").innerHTML = cartNum;
+                
+                let cartSize = 0;
+                for(let c = 1; c < cart.length; c = c+2){
+                    cartSize += cart[c];
+                }
+                document.getElementById("cartNum").innerHTML = cartSize;
                 clone.querySelector(".cart-btn").addEventListener("click", function(){
-                    const pid = clone.id;
-                    cart.push(pid);
+                    let pid = clone.id;
+                    pid = pid.slice(13, pid.length);
+                    if(cart.findIndex != -1){
+                        const isElement = (element) => element == pid;
+                        cart[cart.findIndex(isElement) + 1] += 1 //adds 1 to cart value
+                        cartSize = 0;
+                        for(let c = 1; c < cart.length; c = c+2){
+                            cartSize += cart[c];
+                        }
+                        console.log(cartSize)
+                        document.getElementById("cartNum").innerHTML = cartSize;
+                    }
+                    //localStorage.setItem("cart",cart);
+                    
                     console.log("added " + pid + " to cart");
-                    cartNum++;
-                    document.getElementById("cartNum").innerHTML = cartNum;
+                    document.getElementById("cartNum").innerHTML = cartSize;
                     console.log(cart);
+                });
+
+                clone.querySelector(".remove-cart-btn").addEventListener("click", function(){
+                    
                 });
 
                 let img1 = clone.querySelector(".dimImage");
@@ -296,4 +327,3 @@ function mainLoop() {
         }
     }
 }
-
