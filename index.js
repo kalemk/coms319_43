@@ -14,7 +14,7 @@ if(localStorage.getItem("cartFlag") !== null){
 else{
     cartFlag = 1;
 }
-
+//if numberFireworks > curr, update localstorage
 //localStorage.clear();
 //localStorage.setItem("cart", JSON.stringify(cart)); //reset value!
 
@@ -69,7 +69,6 @@ function initData(jsondata) {
        localStorage.setItem("cartFlag", 0);
     }
     
-
     for(let i in data) {   
         if(data[i].type == "frag") {
             // check for duplicate ids
@@ -103,6 +102,8 @@ function initData(jsondata) {
                 clone.querySelector(".animate-btn").addEventListener("click", function(){
                     const name = clone.querySelector(".card-title").innerText;
                     activeFireworkName = name;
+                    document.getElementById("active-text").innerHTML = name;
+                    document.getElementById("active-text").style.fontWeight = "9000";
                     console.log("set activeFireworkName to " + name);
                 });
 
@@ -112,7 +113,7 @@ function initData(jsondata) {
                 let cartSize = 0;
                 for(let c = 1; c < cart.length; c = c+2){
                     cartSize += cart[c];
-                    console.log(c + " " + i);
+                    //console.log(c + " " + i);
                     if(cart[c] > 0 && c == i * 2 + 1){      //when the current clone lines up with the cart element greater than 1
                         removeButtonElement.style.display = "block";
                     }
@@ -129,11 +130,10 @@ function initData(jsondata) {
                         for(let c = 1; c < cart.length; c = c+2){
                             cartSize += cart[c];
                         }
-                        console.log(cartSize)
+                        //console.log(cartSize);
                         document.getElementById("cartNum").innerHTML = cartSize;
                     }
-                    //TODO: make remove show up if it needs to immediately
-                    //TODO: remove unfunctional buttons & add credits to nav bar
+                    //TODO: update credits
                     //TODO: add cart page
                     if(cart[cart.findIndex(isElement) + 1] > 0){           //if pid is in the cart
                         removeButtonElement.style.display = "block";
@@ -143,7 +143,7 @@ function initData(jsondata) {
                     }
                     console.log("added " + pid + " to cart");
                     document.getElementById("cartNum").innerHTML = cartSize;
-                    console.log(cart);
+                    //console.log(cart);
                 });
 
                 clone.querySelector(".remove-cart-btn").addEventListener("click", function(){
@@ -157,7 +157,7 @@ function initData(jsondata) {
                         for(let c = 1; c < cart.length; c = c+2){
                             cartSize += cart[c];
                         }
-                        console.log(cartSize)
+                        //console.log(cartSize)
                         document.getElementById("cartNum").innerHTML = cartSize;
                     }
                     if(cart[cart.findIndex(isElement) + 1] > 0){           //if pid is in the cart
@@ -168,7 +168,7 @@ function initData(jsondata) {
                     }
                     console.log("removed " + pid + " to cart");
                     document.getElementById("cartNum").innerHTML = cartSize;
-                    console.log(cart);
+                    //console.log(cart);
                 });
 
                 let img1 = clone.querySelector(".dimImage");
