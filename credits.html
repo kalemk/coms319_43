@@ -30,7 +30,7 @@
     <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#712cf9">
 
-    <script src = "./index.js" type="text/javascript"></script>
+    <script src = "./credits.js" type="text/javascript"></script>
 
     <style>
         
@@ -192,7 +192,7 @@
 
     
     <header data-bs-theme="dark">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
           <a class="navbar-brand" href="index.html"><strong>Little Fireworks</strong></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -203,6 +203,7 @@
               <li class="nav-item">
               </li>
             </ul>
+            <!--
             <span class="navbar-text" style="padding-right: 5%;">
               <form class="d-flex" style = "padding-top: 1%;">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -218,6 +219,15 @@
                 </svg>
                 Profile
               </a>
+            </span> -->
+            <span class="navbar-text"  style="padding-right: 5%;">
+              <a class="nav-link active" href="credits.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                <path d="M14 3v5h5M12 18v-6M9 15h6"/></svg>
+                Credits
+              </a>
             </span>
             <span class="navbar-text" style="padding-right: 5%;">
               <a class="nav-link active" href="cart.html">
@@ -227,7 +237,7 @@
                   <circle cx="18" cy="20.5" r="1" />
                   <path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" />
                 </svg>
-                Cart
+                Cart (<span id="cartNum"></span>)
               </a>
             </span>
           </div>
@@ -236,8 +246,7 @@
     </header>
 
 <main>
-    
-
+  <canvas id="canvas" style="background-color: black;" width="800" height="500"></canvas>
   <div class=main-credits style = "background-color: black; padding-bottom: 10%; padding-top: 5%;">
     <h1 style="text-align: center;">Credits</h1>
     <h3 style="text-align: center;"><br>SE/ComS 319<br>Construction of User Interfaces</h3>

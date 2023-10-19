@@ -6,36 +6,18 @@ let canvas, ctx;
 let gravity = 0.05;
 let flashLevel = 1;
 let activeFireworkName = "";
-let cart = []; //['firework_e0', 1, 'firework_e1', 0, 'firework_e2', 0, 'firework_e3', 0, 'firework_e4', 0];
-let cartFlag;
-if(localStorage.getItem("cartFlag") !== null){
-    cartFlag = localStorage.getItem("cartFlag");
-}
-else{
-    cartFlag = 1;
-}
-//if numberFireworks > curr, update localstorage
-//localStorage.clear();
-//localStorage.setItem("cart", JSON.stringify(cart)); //reset value!
-
-//localStorage.setItem("cartFlag", 1);  //reset value (not rn)
-
-//if(localStorage.getItem("cart") === null){  //if the page has been loaded before | may need to locally reset values if more fireworks are added!
-
-    // console.log("CART: " + localStorage.getItem("cart"));    
-    // storedCart = localStorage.getItem("cart");
-    // cart = storedCart ? JSON.parse(storedCart) : [];
-    // console.log(cart);
-    
-//}
-
-cart = loadCart();
+let cart = loadCart();
+let carSize = 0;
+//console.log(cart);
 
 window.addEventListener('load', function() {
     tryLoadData();
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-    setInterval(mainLoop, 1000/60);
+
+    cartSize = 0;
+    for(let c = 1; c < cart.length; c = c+2){
+        cartSize += cart[c];
+    }
+    document.getElementById("cartNum").innerHTML = cartSize;
 });
 
 function loadCart(){
@@ -57,18 +39,6 @@ function tryLoadData() {
 
 function initData(jsondata) {
     var data = jsondata.fireworkData;
-    console.log(data);
-    if(cartFlag == 1){
-        for(let i in data){
-            if(data[i].type == "firework"){
-                cart.push(data[i].productid)
-                cart.push(0);
-            }
-        }
-        cartFlag = 0;
-       localStorage.setItem("cartFlag", 0);
-    }
-    
     for(let i in data) {   
         if(data[i].type == "frag") {
             // check for duplicate ids
@@ -81,117 +51,10 @@ function initData(jsondata) {
             if(fireworkData[data[i].name]) {
                 throw new Error("duplicate firework name: " + data[i].name);
             }
-            fireworkData[data[i].name] = data[i];
-            
-
-                // select the hidden element
-
-                // for every item in the json, copy the hidden element
-                // and add it to the page. unhide it.
-
-                // give it the proper title, price, etc.
-
-                let templateElement = document.getElementById("shop-element-template");
-
-                let clone = templateElement.cloneNode(true);
-                clone.id = "shop-element-"+data[i].productid;
-                clone.querySelector(".card-title").innerText = data[i].name;
-                clone.querySelector(".card-text").innerText = data[i].description;
-                clone.querySelector(".text-body-secondary").innerText = "$"+data[i].price;
-
-                clone.querySelector(".animate-btn").addEventListener("click", function(){
-                    const name = clone.querySelector(".card-title").innerText;
-                    activeFireworkName = name;
-                    document.getElementById("active-text").innerHTML = name;
-                    document.getElementById("active-text").style.fontWeight = "9000";
-                    console.log("set activeFireworkName to " + name);
-                });
-
-                let removeButtonElement = clone.querySelector(".remove-cart-btn");
-                removeButtonElement.style.display = "none";
-                
-                let cartSize = 0;
-                for(let c = 1; c < cart.length; c = c+2){
-                    cartSize += cart[c];
-                    //console.log(c + " " + i);
-                    if(cart[c] > 0 && c == i * 2 + 1){      //when the current clone lines up with the cart element greater than 1
-                        removeButtonElement.style.display = "block";
-                    }
-                }
-                document.getElementById("cartNum").innerHTML = cartSize;
-                clone.querySelector(".cart-btn").addEventListener("click", function(){
-                    let pid = clone.id;
-                    pid = pid.slice(13, pid.length);
-                    const isElement = (element) => element == pid;
-                    if(cart.findIndex != -1){
-                        cart[cart.findIndex(isElement) + 1] += 1 //adds 1 to cart value
-                        localStorage.setItem("cart", JSON.stringify(cart));
-                        cartSize = 0;
-                        for(let c = 1; c < cart.length; c = c+2){
-                            cartSize += cart[c];
-                        }
-                        //console.log(cartSize);
-                        document.getElementById("cartNum").innerHTML = cartSize;
-                    }
-                    //TODO: update credits
-                    //TODO: add fireworks to credit background
-                    //TODO: add cart page
-                    if(cart[cart.findIndex(isElement) + 1] > 0){           //if pid is in the cart
-                        removeButtonElement.style.display = "block";
-                    }
-                    else{
-                        removeButtonElement.style.display = "none";
-                    }
-                    console.log("added " + pid + " to cart");
-                    document.getElementById("cartNum").innerHTML = cartSize;
-                    //console.log(cart);
-                });
-
-                clone.querySelector(".remove-cart-btn").addEventListener("click", function(){
-                    let pid = clone.id;
-                    pid = pid.slice(13, pid.length);
-                    const isElement = (element) => element == pid;
-                    if(cart.findIndex != -1){
-                        cart[cart.findIndex(isElement) + 1] -= 1 //remove 1 from cart value
-                        localStorage.setItem("cart", JSON.stringify(cart));
-                        cartSize = 0;
-                        for(let c = 1; c < cart.length; c = c+2){
-                            cartSize += cart[c];
-                        }
-                        //console.log(cartSize)
-                        document.getElementById("cartNum").innerHTML = cartSize;
-                    }
-                    if(cart[cart.findIndex(isElement) + 1] > 0){           //if pid is in the cart
-                        removeButtonElement.style.display = "block";
-                    }
-                    else{
-                        removeButtonElement.style.display = "none";
-                    }
-                    console.log("removed " + pid + " to cart");
-                    document.getElementById("cartNum").innerHTML = cartSize;
-                    //console.log(cart);
-                });
-
-                let img1 = clone.querySelector(".dimImage");
-                img1.src = jsondata.images[data[i].image_type][0];
-                let img2 = clone.querySelector(".brightImage")
-                img2.src = jsondata.images[data[i].image_type][1];
-                clone.hidden = false;
-
-
-                //let can = clone.querySelector(".canvas");
-                //can.id = "canvas-clone";
-
-                let container = document.getElementsByClassName('row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3')[0];
-                container.appendChild(clone);
-
-                
-
         }else {
             throw new Error("unknown type: " + data[i].type);
         }
     }
-
     // set active firework to the one with the highest price
     let maxPrice = 0;
     for(let i in fireworkData) {
@@ -217,7 +80,6 @@ function beginLaunchingFireworks() {
         }
     }, 100);
 }
-
 
 
 // Firework class
