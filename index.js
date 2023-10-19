@@ -4,10 +4,32 @@ let activeFrags = [];
 let trails = [];
 let canvas, ctx;
 let gravity = 0.05;
-let flashLevel = 0;
+let flashLevel = 1;
 let activeFireworkName = "";
-let cartFlag = 1;
-let cart = [];
+let cart = []; //['firework_e0', 1, 'firework_e1', 0, 'firework_e2', 0, 'firework_e3', 0, 'firework_e4', 0];
+let cartFlag;
+if(localStorage.getItem("cartFlag") !== null){
+    cartFlag = localStorage.getItem("cartFlag");
+}
+else{
+    cartFlag = 1;
+}
+
+//localStorage.clear();
+//localStorage.setItem("cart", JSON.stringify(cart)); //reset value!
+
+//localStorage.setItem("cartFlag", 1);  //reset value (not rn)
+
+//if(localStorage.getItem("cart") === null){  //if the page has been loaded before | may need to locally reset values if more fireworks are added!
+
+    // console.log("CART: " + localStorage.getItem("cart"));    
+    // storedCart = localStorage.getItem("cart");
+    // cart = storedCart ? JSON.parse(storedCart) : [];
+    // console.log(cart);
+    
+//}
+
+cart = loadCart();
 
 window.addEventListener('load', function() {
     tryLoadData();
@@ -15,6 +37,11 @@ window.addEventListener('load', function() {
     ctx = canvas.getContext("2d");
     setInterval(mainLoop, 1000/60);
 });
+
+function loadCart(){
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+}
 
 function tryLoadData() {
     fetch('./data.json').then(res => res.json()).then(data => 
@@ -39,6 +66,7 @@ function initData(jsondata) {
             }
         }
         cartFlag = 0;
+       localStorage.setItem("cartFlag", 0);
     }
     
 
@@ -84,8 +112,11 @@ function initData(jsondata) {
                 let cartSize = 0;
                 for(let c = 1; c < cart.length; c = c+2){
                     cartSize += cart[c];
+                    console.log(c + " " + i);
+                    if(cart[c] > 0 && c == i * 2 + 1){      //when the current clone lines up with the cart element greater than 1
+                        removeButtonElement.style.display = "block";
+                    }
                 }
-                
                 document.getElementById("cartNum").innerHTML = cartSize;
                 clone.querySelector(".cart-btn").addEventListener("click", function(){
                     let pid = clone.id;
@@ -93,6 +124,7 @@ function initData(jsondata) {
                     const isElement = (element) => element == pid;
                     if(cart.findIndex != -1){
                         cart[cart.findIndex(isElement) + 1] += 1 //adds 1 to cart value
+                        localStorage.setItem("cart", JSON.stringify(cart));
                         cartSize = 0;
                         for(let c = 1; c < cart.length; c = c+2){
                             cartSize += cart[c];
@@ -100,9 +132,7 @@ function initData(jsondata) {
                         console.log(cartSize)
                         document.getElementById("cartNum").innerHTML = cartSize;
                     }
-                    //localStorage.setItem("cart",cart);
-                    //TODO: add local storage
-                    //TODO: add button visibility
+                    //TODO: make remove show up if it needs to immediately
                     //TODO: remove unfunctional buttons & add credits to nav bar
                     //TODO: add cart page
                     if(cart[cart.findIndex(isElement) + 1] > 0){           //if pid is in the cart
@@ -122,6 +152,7 @@ function initData(jsondata) {
                     const isElement = (element) => element == pid;
                     if(cart.findIndex != -1){
                         cart[cart.findIndex(isElement) + 1] -= 1 //remove 1 from cart value
+                        localStorage.setItem("cart", JSON.stringify(cart));
                         cartSize = 0;
                         for(let c = 1; c < cart.length; c = c+2){
                             cartSize += cart[c];
@@ -129,11 +160,6 @@ function initData(jsondata) {
                         console.log(cartSize)
                         document.getElementById("cartNum").innerHTML = cartSize;
                     }
-                    //localStorage.setItem("cart",cart);
-                    //TODO: add local storage
-                    //TODO: add button visibility
-                    //TODO: remove unfunctional buttons & add credits to nav bar
-                    //TODO: add cart page
                     if(cart[cart.findIndex(isElement) + 1] > 0){           //if pid is in the cart
                         removeButtonElement.style.display = "block";
                     }
