@@ -133,7 +133,6 @@ function initData(jsondata) {
                         //console.log(cartSize);
                         document.getElementById("cartNum").innerHTML = cartSize;
                     }
-                    //TODO: update credits
                     //TODO: add fireworks to credit background
                     //TODO: add cart page
                     if(cart[cart.findIndex(isElement) + 1] > 0){           //if pid is in the cart

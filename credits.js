@@ -12,6 +12,9 @@ let carSize = 0;
 
 window.addEventListener('load', function() {
     tryLoadData();
+    canvas = document.getElementById("canvas");
+    ctx = canvas.getContext("2d");
+    setInterval(mainLoop, 1000/60);
 
     cartSize = 0;
     for(let c = 1; c < cart.length; c = c+2){
@@ -51,19 +54,19 @@ function initData(jsondata) {
             if(fireworkData[data[i].name]) {
                 throw new Error("duplicate firework name: " + data[i].name);
             }
+            fireworkData[data[i].name] = data[i];   //
         }else {
             throw new Error("unknown type: " + data[i].type);
         }
     }
     // set active firework to the one with the highest price
     let maxPrice = 0;
-    for(let i in fireworkData) {
-        if(fireworkData[i].price > maxPrice) {
-            maxPrice = fireworkData[i].price;
-            activeFireworkName = fireworkData[i].name;
+    for(let name in fireworkData) {
+        if(fireworkData[name].price > maxPrice) {
+            maxPrice = fireworkData[name].price;
+            activeFireworkName = name;
         }
     }
-    
     beginLaunchingFireworks();
 }
 
