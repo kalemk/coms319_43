@@ -29,6 +29,7 @@ else{
     
 //}
 
+
 cart = loadCart();
 
 window.addEventListener('load', function() {
