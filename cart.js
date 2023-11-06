@@ -12,8 +12,14 @@ window.addEventListener('load', function() {
 });
 
 function loadCart(){
-    const storedCart = localStorage.getItem("cart");
-    return storedCart ? JSON.parse(storedCart) : [];
+    let storedCart;
+    try{
+        storedCart = JSON(localStorage.getItem("cart"));
+    }{
+        storeCart = [];
+    }
+    
+    return storedCart;
 }
 
 function tryLoadData() {
