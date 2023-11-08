@@ -1,0 +1,58 @@
+[
+    {
+      "name": "Lion",
+      "src": "/img/lion.png",
+      "price": 900,
+      "description": "a cat",
+      "key": 1,
+      "id": "card1"
+    },
+    {
+      "name": "elephant",
+      "src": "/img/africanelephant.png",
+      "price": 3000,
+      "description": "from africa",
+      "key": 2,
+      "id": "card2"
+    },
+    {
+      "name": "Blue Whale",
+      "src": "/img/bluewhale.png",
+      "price": 18000,
+      "description": "whale",
+      "key": 3,
+      "id": "card3"
+    },
+    {
+      "name": "Sperm Whale",
+      "src": "/img/spermwhale.png",
+      "price": 17000,
+      "description": "another whale",
+      "key": 4,
+      "id": "card4"
+    },
+    {
+      "name": "tyranosaurus rex",
+      "src": "/img/trex.png",
+      "price": 26000,
+      "description": "carnivore",
+      "key": 5,
+      "id": "card5"
+    },
+    {
+      "name": "Mosasaurus",
+      "src": "/img/mosasaurus.png",
+      "price": 23900,
+      "description": "like a lizard",
+      "key": 6,
+      "id": "card6"
+    },
+    {
+      "name": "Argentinosaurus",
+      "src": "/img/argentinosaurus.png",
+      "price": 55600,
+      "description": "It is a dinosaur",
+      "key": 7,
+      "id": "card7"
+    }
+  ]

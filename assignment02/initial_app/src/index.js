@@ -19,6 +19,22 @@ function Header() {
   );
 }
 
+function SearchBar() {
+
+  function clickSearch() {
+    console.log("search clicked");
+    let val = document.getElementById("searchinput").value;
+    console.log(val);
+  }
+
+  return (
+    <div className="input-group" style={{marginBottom:"10px", padding:"10px"}}>
+      <input id="searchinput" type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+      <button type="button" className="btn btn-outline-primary" onClick={clickSearch}>search</button>
+    </div>
+  )
+}
+
 function Card({id, src, name, txt, price}) {
 
   const [count, setCount] = useState("0");
@@ -65,67 +81,7 @@ function Card({id, src, name, txt, price}) {
 }
 
 function CardList() {
-  console.log("card list called");
-
-  let data = [
-    {
-      "name": "Lion",
-      "src": "/img/lion.png",
-      "price": 100,
-      "description": "a cat",
-      "key": 1,
-      "id": "card1",
-    },
-    {
-      "name": "elephant",
-      "src": "/img/africanelephant.png",
-      "price": 100,
-      "description": "from africa",
-      "key": 2,
-      "id": "card2",
-    },
-    {
-      "name": "Blue Whale",
-      "src": "/img/bluewhale.png",
-      "price": 100,
-      "description": "whale",
-      "key": 3,
-      "id": "card3",
-    },
-    {
-      "name": "Sperm Whale",
-      "src": "/img/spermwhale.png",
-      "price": 100,
-      "description": "another whale",
-      "key": 4,
-      "id": "card4",
-    },
-    {
-      "name": "tyranosaurus rex",
-      "src": "/img/trex.png",
-      "price": 100,
-      "description": "carnivore",
-      "key": 5,
-      "id": "card5",
-    },
-    {
-      "name": "Mosasaurus",
-      "src": "/img/mosasaurus.png",
-      "price": 100,
-      "description": "like a lizard",
-      "key": 6,
-      "id": "card6",
-    },
-    {
-      "name": "Argentinosaurus",
-      "src": "/img/argentinosaurus.png",
-      "price": 100,
-      "description": "It is a dinosaur",
-      "key": 7,
-      "id": "card7",
-    },
-  ]
-
+  let data = window.data;
   return (
     <>
       {
@@ -143,6 +99,7 @@ function Content() {
     <Header />
     <div className="album py-5 bg-body-tertiary">
       <div className="container">
+      <SearchBar/>
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <CardList />
         </div>
@@ -152,9 +109,26 @@ function Content() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <>
-    <Content />
-  </>
-);
+function tryLoadData() {
+  fetch('/data/data.json').then(res => res.json()).then(data => 
+  {
+      console.log("loaded data");
+      window.data = data;
+      init();
+  }).catch(err => 
+  {
+      window.alert("there was an error when loading the shop data");
+      console.log(err);
+  });
+}
+
+function init() {
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+    <>
+      <Content />
+    </>
+  );
+}
+
+tryLoadData();
