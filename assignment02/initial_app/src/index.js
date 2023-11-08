@@ -2,16 +2,17 @@ import React from 'react';
 import { useState } from "react";
 import ReactDOM from 'react-dom/client';
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 function Header() {
   return (
   <section className="py-5 text-center container">
     <div className="row py-lg-5">
       <div className="col-lg-6 col-md-8 mx-auto">
-        <h1 className="fw-light">Some sort of title--yeah</h1>
-        <p className="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <h1 className="fw-light">Pet Peeve</h1>
+        <p className="lead text-body-secondary">A pet store selling only animals you wouldn't want as a pet.</p>
         <p>
-          <a href="#" className="btn btn-primary my-2">Main call to action</a>
-          <a href="#" className="btn btn-secondary my-2">Secondary action</a>
+          {/* <a href="#" className="btn btn-primary my-2" onClick={changePage}>Next Page</a> */}
         </p>
       </div>
     </div>
@@ -93,19 +94,72 @@ function CardList() {
   );
 }
 
-function Content() {
+function StorePage() {
+  
+  function changePageCart(){
+    root.render(
+      <>
+        <CartPage />
+      </>
+    )
+  }
+
   return (
   <main>
     <Header />
     <div className="album py-5 bg-body-tertiary">
       <div className="container">
       <SearchBar/>
+      <a href="#" className="btn btn-primary my-2" onClick={changePageCart}>Cart/Checkout</a>
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <CardList />
         </div>
       </div>
     </div>
   </main>
+  );
+}
+
+function CartPage(){
+  function changePageStore(){
+    root.render(
+      <>
+        <StorePage />
+      </>
+    )
+  }
+
+  function changePageConfirm(){
+    root.render(
+      <>
+        <ConfirmPage />
+      </>
+    )
+  }
+  return (
+    <main>
+    <Header />
+    <a href="#" className="btn btn-primary my-2" onClick={changePageStore}>Back to Store</a>
+    <a href="#" className="btn btn-primary my-2" onClick={changePageConfirm}>Place Order</a>
+    <div>Cart</div>
+    </main>
+  );
+}
+
+function ConfirmPage(){
+  function changePageStore(){
+    root.render(
+      <>
+        <StorePage />
+      </>
+    )
+  }
+  return (
+    <main>
+    <Header />
+    <a href="#" className="btn btn-primary my-2" onClick={changePageStore}>Back to Store</a>
+    <div>Confirm</div>
+    </main>
   );
 }
 
@@ -123,10 +177,9 @@ function tryLoadData() {
 }
 
 function init() {
-  const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
     <>
-      <Content />
+      <StorePage />
     </>
   );
 }
