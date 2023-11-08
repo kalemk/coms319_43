@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from "react";
 import ReactDOM from 'react-dom/client';
 
 function Header() {
@@ -18,23 +19,40 @@ function Header() {
   );
 }
 
-function Card({src, name, txt, price}) {
+function Card({id, src, name, txt, price}) {
+
+  const [count, setCount] = useState("0");
+
+  function incClick () {
+    console.log("inc clicked");
+    let c = ~~count;
+    setCount(c+1);
+  }
+
+  function decClick () {
+    console.log("dec clicked");
+    let c = ~~count;
+    if (c > 0) {
+      setCount(c-1);
+    }
+  }
+
   return (
   <div className="col">
     <div className="card shadow-sm">
       <h3 className="card-header">{name}</h3>
       <img src={src} alt="shop image" />
       <div className="card-body">
-        <span className="card-price">${price}.00</span>
+        <span className="card-price" style={{border: '5px solid rgba(0, 100, 0, 1)', color: 'white', backgroundColor: 'green'}}>${price}.00</span>
         <p className="card-text">{txt}</p>
         <div className="d-flex justify-content-between align-items-center">
           <div className="btn-group">
 
             <div className="d-flex justify-content-center">
                 <div className="input-group w-auto">
-                    <input readOnly type="text" value="0" className="form-control" aria-label="Example input" aria-describedby="button-addon1"/>
-                    <button className="btn btn-outline-success" type="button" id="button-addon1" data-mdb-ripple-color="dark">+</button>
-                    <button className="btn btn-outline-secondary" type="button" id="button-addon1" data-mdb-ripple-color="dark">-</button>
+                    <input readOnly type="text" value={count} className="form-control" aria-label="Example input" aria-describedby="button-addon1"/>
+                    <button className="btn btn-outline-success" type="button" id="button-addon1" data-mdb-ripple-color="dark" onClick={incClick}>+</button>
+                    <button className="btn btn-outline-secondary" type="button" id="button-addon1" data-mdb-ripple-color="dark" onClick={decClick}>-</button>
                 </div>
             </div>
             
@@ -56,6 +74,7 @@ function CardList() {
       "price": 100,
       "description": "a cat",
       "key": 1,
+      "id": "card1",
     },
     {
       "name": "elephant",
@@ -63,6 +82,7 @@ function CardList() {
       "price": 100,
       "description": "from africa",
       "key": 2,
+      "id": "card2",
     },
     {
       "name": "Blue Whale",
@@ -70,6 +90,7 @@ function CardList() {
       "price": 100,
       "description": "whale",
       "key": 3,
+      "id": "card3",
     },
     {
       "name": "Sperm Whale",
@@ -77,6 +98,7 @@ function CardList() {
       "price": 100,
       "description": "another whale",
       "key": 4,
+      "id": "card4",
     },
     {
       "name": "tyranosaurus rex",
@@ -84,6 +106,7 @@ function CardList() {
       "price": 100,
       "description": "carnivore",
       "key": 5,
+      "id": "card5",
     },
     {
       "name": "Mosasaurus",
@@ -91,6 +114,7 @@ function CardList() {
       "price": 100,
       "description": "like a lizard",
       "key": 6,
+      "id": "card6",
     },
     {
       "name": "Argentinosaurus",
@@ -98,6 +122,7 @@ function CardList() {
       "price": 100,
       "description": "It is a dinosaur",
       "key": 7,
+      "id": "card7",
     },
   ]
 
@@ -105,7 +130,7 @@ function CardList() {
     <>
       {
         data.map(i=>(
-          <Card key={i.key} src={i.src} name={i.name} txt={i.description} price={i.price}/>
+          <Card key={i.key} src={i.src} name={i.name} txt={i.description} price={i.price} id={i.id}/>
         ))
       }
     </>
