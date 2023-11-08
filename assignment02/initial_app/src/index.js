@@ -24,7 +24,16 @@ function SearchBar() {
   function clickSearch() {
     console.log("search clicked");
     let val = document.getElementById("searchinput").value;
+    window.searchFilter = val;
     console.log(val);
+
+    // refresh the page
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+      <>
+        <Content />
+      </>
+    );
   }
 
   return (
@@ -81,7 +90,13 @@ function Card({id, src, name, txt, price}) {
 }
 
 function CardList() {
-  let data = window.data;
+  if(window.searchFilter) {
+    var data = window.data.filter(
+      i=>(i.name.toLowerCase().replaceAll(' ', '').includes(window.searchFilter.toLowerCase().replaceAll(' ', '')))
+    );
+  } else{
+    var data = window.data;
+  }
   return (
     <>
       {
