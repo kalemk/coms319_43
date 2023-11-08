@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
 
 function Header() {
   return (
@@ -19,13 +18,15 @@ function Header() {
   );
 }
 
-function Card() {
+function Card({src, name, txt, price}) {
   return (
   <div className="col">
     <div className="card shadow-sm">
-      <img src="img/ch47.png" alt="shop image" />
+      <h3 className="card-header">{name}</h3>
+      <img src={src} alt="shop image" />
       <div className="card-body">
-        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <span className="card-price">${price}.00</span>
+        <p className="card-text">{txt}</p>
         <div className="d-flex justify-content-between align-items-center">
           <div className="btn-group">
 
@@ -46,23 +47,79 @@ function Card() {
 }
 
 function CardList() {
+  console.log("card list called");
+
+  let data = [
+    {
+      "name": "Ch47",
+      "src": "/img/ch47.png",
+      "price": 100,
+      "description": "a helicopter",
+      "key": 1,
+    },
+    {
+      "name": "Delorean",
+      "src": "/img/car.png",
+      "price": 100,
+      "description": "car",
+      "key": 2,
+    },
+    {
+      "name": "Sail Boat",
+      "src": "/img/sailboat.png",
+      "price": 100,
+      "description": "ship",
+      "key": 3,
+    },
+    {
+      "name": "Cargo Ship",
+      "src": "/img/seawisegiant.png",
+      "price": 100,
+      "description": "ship 2",
+      "key": 4,
+    },
+    {
+      "name": "Space Shuttle",
+      "src": "/img/spaceshuttle.png",
+      "price": 100,
+      "description": "ship",
+      "key": 5,
+    },
+    {
+      "name": "stardestroyer",
+      "src": "/img/stardestroyer.png",
+      "price": 100,
+      "description": "ship",
+      "key": 6,
+    },
+    {
+      "name": "Submarine",
+      "src": "/img/deepseachallenger.png",
+      "price": 100,
+      "description": "the deep sea challenger",
+      "key": 7,
+    },
+  ]
+
+  return (
+    <>
+      {
+        data.map(i=>(
+          <Card key={i.key} src={i.src} name={i.name} txt={i.description} price={i.price}/>
+        ))
+      }
+    </>
+  );
+}
+
+function Content() {
   return (
   <main>
     <Header />
     <div className="album py-5 bg-body-tertiary">
       <div className="container">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <Card />
-          <Card />
-          <Card />
-
-          <Card />
-          <Card />
-          <Card />
-
-          <Card />
-          <Card />
-          <Card />
+          <CardList />
         </div>
       </div>
     </div>
@@ -72,12 +129,7 @@ function CardList() {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <CardList />
-  </React.StrictMode>
+  <>
+    <Content />
+  </>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
