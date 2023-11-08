@@ -29,7 +29,6 @@ function SearchBar() {
     console.log(val);
 
     // refresh the page
-    const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(
       <>
         <StorePage />
