@@ -179,7 +179,7 @@ function CartPage(){
 
   let data = window.data.filter(i=>(cartList[i.id] > 0));
 
-  function changePageStore(){
+  function changePageStore(){ // clicked the back button
     root.render(
       <>
         <StorePage />
@@ -187,7 +187,72 @@ function CartPage(){
     )
   }
 
-  function changePageConfirm(){
+  function changePageConfirm(){ // clicked the buy button
+    let username = document.getElementById("typeName").value;
+    let email = document.getElementById("typeEmail").value;
+    let state = document.getElementById("typeState").value;
+    let address = document.getElementById("typeAdr").value;
+    let city = document.getElementById("typeCity").value;
+    let zip = document.getElementById("typeZip").value;
+    let card = document.getElementById("typeCard").value;
+
+    if(!localStorage.getItem("pass")){
+
+      // validate username
+      if (username.length < 1){
+        window.alert("invalid name. field is empty");
+        return;
+      }
+
+      // validate email
+      if (!email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )){
+        window.alert("invalid email");
+        return;
+      }
+
+      // validate state
+      if(state.length < 1){
+        window.alert("invalid state. field is empty");
+        return;
+      }
+
+      // validate address
+      if(address.length < 1){
+        window.alert("invalid address. field is empty");
+        return;
+      }
+
+      // validate city
+      if(city.length < 1){
+        window.alert("invalid city. field is empty");
+        return;
+      }
+
+      // validate zip
+      if (!zip.match(/^\d{5}$/)){
+        window.alert("invalid zip, use the form: #####");
+        return;
+      }
+
+      // validate card
+      if (!card.match(/^\d{4} \d{4} \d{4} \d{4}$/)){
+        window.alert("invalid card, use the form: #### #### #### ####");
+        return;
+      }
+    }
+
+    window.formstuff = {
+      username: username,
+      email: email,
+      state: state,
+      address: address,
+      city: city,
+      zip: zip,
+      card: card
+    }
+
     root.render(
       <>
         <ConfirmPage />
@@ -268,7 +333,7 @@ function CartPage(){
                             </div>
                             <div className="col-md-6">
                               <div className="form-outline form-white">
-                                <input type="password" id="typeAdr" className="form-control form-control-lg"
+                                <input type="text" id="typeAdr" className="form-control form-control-lg"
                                   placeholder="Your Adress" size="1" />
                                 <label className="form-label" for="typeAdr">Address</label>
                               </div>
@@ -278,16 +343,16 @@ function CartPage(){
                           <div className="row mb-4">
                             <div className="col-md-6">
                               <div className="form-outline form-white">
-                                <input type="text" id="typeExp" className="form-control form-control-lg"
+                                <input type="text" id="typeCity" className="form-control form-control-lg"
                                   placeholder="Your City" size="7"/>
-                                <label className="form-label" for="typeExp">City</label>
+                                <label className="form-label" for="typeCity">City</label>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-outline form-white">
-                                <input type="password" id="typeText" className="form-control form-control-lg"
+                                <input type="text" id="typeZip" className="form-control form-control-lg"
                                   placeholder="Your Zip" size="1" minlength="5" maxlength="5" />
-                                <label className="form-label" for="typeText">Zip Code</label>
+                                <label className="form-label" for="typeZip">Zip Code</label>
                               </div>
                             </div>
                           </div>
@@ -295,9 +360,9 @@ function CartPage(){
                           <hr className="my-4"/>
 
                           <div className="form-outline form-white mb-4">
-                            <input type="text" id="typeText" className="form-control form-control-lg" siez="17"
+                            <input type="text" id="typeCard" className="form-control form-control-lg" siez="17"
                               placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-                            <label className="form-label" for="typeText">Card Number</label>
+                            <label className="form-label" for="typeCard">Card Number</label>
                           </div>
 
                         </form>
