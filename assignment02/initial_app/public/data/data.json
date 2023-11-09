@@ -3,15 +3,15 @@
       "name": "Lion",
       "src": "/img/lion.png",
       "price": 900,
-      "description": "a cat",
+      "description": "The most popular house cat for detering unwanted guests.",
       "key": 1,
       "id": "card1"
     },
     {
-      "name": "elephant",
+      "name": "Elephant",
       "src": "/img/africanelephant.png",
       "price": 3000,
-      "description": "from africa",
+      "description": "For those looking for a full-sized companion.",
       "key": 2,
       "id": "card2"
     },
@@ -19,7 +19,7 @@
       "name": "Blue Whale",
       "src": "/img/bluewhale.png",
       "price": 18000,
-      "description": "whale",
+      "description": "If you have a suitablly large swimming pool, this aquatic wonder will never dissapoint.",
       "key": 3,
       "id": "card3"
     },
@@ -27,15 +27,15 @@
       "name": "Sperm Whale",
       "src": "/img/spermwhale.png",
       "price": 17000,
-      "description": "another whale",
+      "description": "This pet requires 3 giant squid per day. Please ensure you have appropriate resources before purchasing.",
       "key": 4,
       "id": "card4"
     },
     {
-      "name": "tyranosaurus rex",
+      "name": "Tyranosaurus Rex",
       "src": "/img/trex.png",
       "price": 26000,
-      "description": "carnivore",
+      "description": "Thats right, we brought it back just for you!",
       "key": 5,
       "id": "card5"
     },
@@ -43,7 +43,7 @@
       "name": "Mosasaurus",
       "src": "/img/mosasaurus.png",
       "price": 23900,
-      "description": "like a lizard",
+      "description": "A giant lizard-like predator to spice up your aquarium.",
       "key": 6,
       "id": "card6"
     },
@@ -51,7 +51,7 @@
       "name": "Argentinosaurus",
       "src": "/img/argentinosaurus.png",
       "price": 55600,
-      "description": "It is a dinosaur",
+      "description": "A friendly pet and useful tree-trimmer",
       "key": 7,
       "id": "card7"
     }
