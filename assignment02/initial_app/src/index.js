@@ -247,30 +247,57 @@ function CartPage(){
                           <div className="form-outline form-white mb-4">
                             <input type="text" id="typeName" className="form-control form-control-lg" siez="17"
                               placeholder="Cardholder's Name" />
-                            <label className="form-label" for="typeName">Cardholder's Name</label>
+                            <label className="form-label" for="typeName">Full Name</label>
                           </div>
 
                           <div className="form-outline form-white mb-4">
-                            <input type="text" id="typeText" className="form-control form-control-lg" siez="17"
-                              placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-                            <label className="form-label" for="typeText">Card Number</label>
+                            <input type="text" id="typeEmail" className="form-control form-control-lg" siez="17"
+                              placeholder="your@email.com"/>
+                            <label className="form-label" for="typeEmail">Email</label>
+                          </div>
+
+                          <hr className="my-4"/>
+
+                          <div className="row mb-4">
+                            <div className="col-md-6">
+                              <div className="form-outline form-white">
+                                <input type="text" id="typeState" className="form-control form-control-lg"
+                                  placeholder="Your State" size="7" maxlength="15" />
+                                <label className="form-label" for="typeState">State</label>
+                              </div>
+                            </div>
+                            <div className="col-md-6">
+                              <div className="form-outline form-white">
+                                <input type="password" id="typeAdr" className="form-control form-control-lg"
+                                  placeholder="Your Adress" size="1" />
+                                <label className="form-label" for="typeAdr">Address</label>
+                              </div>
+                            </div>
                           </div>
 
                           <div className="row mb-4">
                             <div className="col-md-6">
                               <div className="form-outline form-white">
                                 <input type="text" id="typeExp" className="form-control form-control-lg"
-                                  placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
-                                <label className="form-label" for="typeExp">Expiration</label>
+                                  placeholder="Your City" size="7"/>
+                                <label className="form-label" for="typeExp">City</label>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-outline form-white">
                                 <input type="password" id="typeText" className="form-control form-control-lg"
-                                  placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                                <label className="form-label" for="typeText">Cvv</label>
+                                  placeholder="Your Zip" size="1" minlength="5" maxlength="5" />
+                                <label className="form-label" for="typeText">Zip Code</label>
                               </div>
                             </div>
+                          </div>
+
+                          <hr className="my-4"/>
+
+                          <div className="form-outline form-white mb-4">
+                            <input type="text" id="typeText" className="form-control form-control-lg" siez="17"
+                              placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                            <label className="form-label" for="typeText">Card Number</label>
                           </div>
 
                         </form>
