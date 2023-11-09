@@ -114,7 +114,7 @@ function CardList() {
 }
 
 function StorePage() {
-  
+
   function changePageCart(){
     root.render(
       <>
@@ -187,6 +187,7 @@ function PriceItem({id, quantity}) {
 }
 
 function CartPage(){
+  window.searchFilter = null;
 
   let data = window.data.filter(i=>(cartList[i.id] > 0));
   let sumPrice = 0;
@@ -424,14 +425,15 @@ function CartPage(){
 }
 
 function ConfirmPage(){
+  window.searchFilter = null;
   let data = window.data.filter(i=>(cartList[i.id] > 0));
   let cartList2 = window.formstuff.cartstuff;
   console.log("Cart wiped!");
   cartList = {};
+  localStorage.setItem("cartList", "{}");
   console.log("Purchase made!");
 
   function changePageStore(){
-    localStorage.setItem("cartList", "{}");
     root.render(
       <>
         <StorePage />
